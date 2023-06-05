@@ -1,6 +1,8 @@
 import BlogEditor from "@/components/blog-editor";
 import { createSlug } from "@/utils/createSlug";
 
+
+
 export default function CreatePost() {
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
     const slug = createSlug(titleInput);
