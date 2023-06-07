@@ -24,7 +24,6 @@ const LoginPage = () => {
       appearance={{ theme: ThemeSupa }}
       supabaseClient={supabaseClient}
       providers={[]}
-      socialLayout='horizontal'
     />
     </>
   );
