@@ -1,11 +1,11 @@
-import { useRouter } from "next/router";
-import BlogEditor from "../../../../components/blog-editor";
+import { useRouter } from 'next/router';
+import BlogEditor from '../../../../components/blog-editor';
 
 const mockData = {
-  title: "Community-Messaging Fit",
-  body: "<p>This is a good community fit!</p>",
+  title: 'Community-Messaging Fit',
+  body: '<p>This is a good community fit!</p>',
   image:
-    "https://media.wired.com/photos/598e35fb99d76447c4eb1f28/16:9/w_2123,h_1194,c_limit/phonepicutres-TA.jpg",
+    'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/16:9/w_2123,h_1194,c_limit/phonepicutres-TA.jpg',
 };
 export default function EditBlogPost() {
   const router = useRouter();
@@ -18,12 +18,12 @@ export default function EditBlogPost() {
 
   return (
     <BlogEditor
-      heading="Edit blog post"
+      heading='Edit blog post'
       title={mockData.title}
       src={mockData.image}
       alt={mockData.title}
       content={mockData.body}
-      buttonText="Save changes"
+      buttonText='Save changes'
       onSubmit={handleOnSubmit}
     />
   );

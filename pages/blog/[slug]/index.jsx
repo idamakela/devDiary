@@ -1,16 +1,15 @@
-import { useRouter } from "next/router";
-import styles from "./blog-post.module.css";
-import Comments from "./partials/comments";
-import AddComment from "./partials/add-comment";
-import Button from "@components/button";
-import Heading from "@components/heading";
-import BlogImageBanner from "@components/blog-image-banner";
+import { useRouter } from 'next/router';
+import styles from './blog-post.module.css';
+import Comments from './partials/comments';
+import AddComment from './partials/add-comment';
+import Button from '@components/button';
+import Heading from '@components/heading';
+import BlogImageBanner from '@components/blog-image-banner';
 
 //import swr, functions and cacheKey
-import useSWR from "swr";
-import useSWRMutation from "swr/mutation";
-import { postCacheKey, getPost } from '@/api-routes/posts'
-
+import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
+import { postCacheKey, getPost } from '@/api-routes/posts';
 
 export default function BlogPost() {
   const router = useRouter();
@@ -19,11 +18,15 @@ export default function BlogPost() {
   const { slug } = router.query;
 
   //fetch a SPECIFIC post
-  const {data: {data = []} = {}, error, status} = useSWR(slug ? `${postCacheKey}${slug}` : null, () => getPost({slug}))
+  const {
+    data: { data = [] } = {},
+    error,
+    status,
+  } = useSWR(slug ? `${postCacheKey}${slug}` : null, () => getPost({ slug }));
+  console.log(data)
 
   //fetch other DATA to SPECIFIK post
   //author (comes in with auth)
-
 
   const handleDeletePost = () => {
     console.log({ id: post.id });
