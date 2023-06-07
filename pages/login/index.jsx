@@ -1,3 +1,4 @@
+import Heading from "@components/heading";
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
@@ -16,12 +17,16 @@ const LoginPage = () => {
   }, [user, router]);
 
   return (
+    <>
+    <Heading>Login</Heading>
     <Auth
       redirectTo='http://localhost:3000/'
       appearance={{ theme: ThemeSupa }}
       supabaseClient={supabaseClient}
+      providers={[]}
       socialLayout='horizontal'
     />
+    </>
   );
 };
 
