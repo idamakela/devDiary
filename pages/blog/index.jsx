@@ -6,7 +6,6 @@ import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { postCacheKey, getPosts } from '@/api-routes/posts';
 
-
 export default function Blog() {
   //fetch ALL posts AND display on blog overview
   const { data: { data = [] } = {} } = useSWR(postCacheKey, getPosts);

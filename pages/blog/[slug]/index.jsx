@@ -9,11 +9,7 @@ import BlogImageBanner from '@components/blog-image-banner';
 //import swr, functions and cacheKey
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import {
-  postCacheKey,
-  getPost,
-  removePost,
-} from '@/api-routes/posts';
+import { postCacheKey, getPost, removePost } from '@/api-routes/posts';
 
 export default function BlogPost() {
   const router = useRouter();
