@@ -1,6 +1,8 @@
 import supabase from '@/lib/supabaseClient';
 export const postCacheKey = '/api/posts';
 
+//TODO: error handling
+
 export const getPosts = async () => {
   //Handle get all posts
   const { data, error, status } = await supabase.from('posts').select('*');
@@ -9,7 +11,7 @@ export const getPosts = async () => {
 };
 
 export const getPost = async ({ slug }) => {
-  //handle get a specific post
+  //Handle get a specific post
   const { data, error, status } = await supabase
     .from('posts')
     .select('*')
@@ -21,8 +23,6 @@ export const getPost = async ({ slug }) => {
 
 export const addPost = async (_, {arg: post}) => {
   //Handle add post here
-  // slug is unique, handle error if its not!
-  console.log({...post});
   const { error, status } = await supabase.from('posts').insert({...post});
 
   return { error, status };
