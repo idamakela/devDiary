@@ -27,7 +27,7 @@ export default function CreatePost() {
     const slug = createSlug(titleInput);
     const author = user.email.split('@')[0];
 
-    //TODO: image to databse 
+    //TODO: image to databse
     console.log({
       body: editorContent,
       title: titleInput,

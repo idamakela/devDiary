@@ -9,7 +9,11 @@ import BlogImageBanner from '@components/blog-image-banner';
 //import swr, functions and cacheKey
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { postCacheKey, getPost } from '@/api-routes/posts';
+import {
+  postCacheKey,
+  getPost,
+  removePost,
+} from '@/api-routes/posts';
 
 export default function BlogPost() {
   const router = useRouter();
@@ -23,13 +27,13 @@ export default function BlogPost() {
     error,
     status,
   } = useSWR(slug ? `${postCacheKey}${slug}` : null, () => getPost({ slug }));
-  console.log(data)
 
-  //fetch other DATA to SPECIFIK post
-  //author (comes in with auth)
+  //DELETE post
+  const { trigger: deleteTrigger } = useSWRMutation(postCacheKey, removePost);
 
-  const handleDeletePost = () => {
-    console.log({ id: post.id });
+  const handleDeletePost = async (id) => {
+    const { error, status } = await deleteTrigger(id);
+    //TODO: send user to blog page when post is deleted
   };
 
   const handleEditPost = () => {
@@ -50,7 +54,7 @@ export default function BlogPost() {
 
         {/* The Delete & Edit part should only be showed if you are authenticated and you are the author */}
         <div className={styles.buttonContainer}>
-          <Button onClick={handleDeletePost}>Delete</Button>
+          <Button onClick={() => handleDeletePost(data.id)}>Delete</Button>
           <Button onClick={handleEditPost}>Edit</Button>
         </div>
       </section>

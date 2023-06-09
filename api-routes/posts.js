@@ -21,20 +21,26 @@ export const getPost = async ({ slug }) => {
   return { data, error, status };
 };
 
-export const addPost = async (_, {arg: post}) => {
+export const addPost = async (_, { arg: post }) => {
   //Handle add post here
-  const { error, status } = await supabase.from('posts').insert({...post});
+  const { error, status } = await supabase.from('posts').insert({ ...post });
 
   return { error, status };
 };
 
-export const removePost = async (id) => {
+export const removePost = async (_, { arg: id }) => {
   //Handle remove post here
-  const { error, status } = await supabase.from('Posts').delete().eq('id', id);
+  const { error, status } = await supabase.from('posts').delete().eq('id', id);
 
   return { error, status };
 };
 
-export const editPost = () => {
+export const editPost = async (_, { arg: post }) => {
   //Handle edit post here
+  const { error, status } = await supabase
+    .from('post')
+    .update({ ...post })
+    .eq('id', id);
+
+  return { error, status };
 };
