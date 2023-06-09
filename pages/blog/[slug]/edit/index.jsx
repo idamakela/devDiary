@@ -3,6 +3,7 @@ import BlogEditor from '@/components/blog-editor';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { postCacheKey, getPost, editPost } from '@/api-routes/posts';
+import { createSlug } from '@/utils/createSlug';
 
 const mockData = {
   title: 'Community-Messaging Fit',
@@ -28,8 +29,24 @@ export default function EditBlogPost() {
   //PUT post
   const { trigger: editTrigger } = useSWRMutation(postCacheKey, editPost);
 
-  const handleOnSubmit = ({ editorContent, titleInput, image }) => {
-    console.log({ editorContent, titleInput, image, slug });
+  const handleOnSubmit = async ({ editorContent, titleInput, image }) => {
+    const newSlug = createSlug(titleInput);
+
+    console.log({
+      body: editorContent,
+      title: titleInput,
+      image,
+      slug: newSlug,
+      id: data.id,
+    });
+
+    const { error, status } = await editTrigger({
+      body: editorContent,
+      title: titleInput,
+      slug: newSlug,
+      id: data.id,
+    });
+    console.log(error);
   };
 
   return (

@@ -38,9 +38,10 @@ export const removePost = async (_, { arg: id }) => {
 export const editPost = async (_, { arg: post }) => {
   //Handle edit post here
   const { error, status } = await supabase
-    .from('post')
+    .from('posts')
     .update({ ...post })
-    .eq('id', id);
+    .eq('id', post.id);
 
+  //ska .eq vara med och vad isf??
   return { error, status };
 };

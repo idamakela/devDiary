@@ -33,7 +33,7 @@ export default function CreatePost() {
       title: titleInput,
       image,
       slug,
-      id: user.id,
+      user_id: user.id,
       author,
     });
 
