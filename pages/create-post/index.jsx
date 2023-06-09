@@ -19,8 +19,6 @@ export default function CreatePost() {
 
   const handleAddPost = async (post) => {
     const { error, status } = await addTrigger(post);
-    console.log('post triggerd');
-    console.log(error);
   };
 
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {

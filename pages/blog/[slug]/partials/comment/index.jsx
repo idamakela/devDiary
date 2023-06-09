@@ -1,5 +1,5 @@
-import Button from "@components/button";
-import styles from "./comment.module.css";
+import Button from '@components/button';
+import styles from './comment.module.css';
 
 export default function Comment({ comment, createdAt, author, id }) {
   const handleDelete = () => {

@@ -8,8 +8,11 @@ export const getComments = async (post_id) => {
   return { data, error, status };
 };
 
-export const addComment = () => {
+export const addComment = async (_, {arg: comment}) => {
   //Handle add comment here
+  const { error, status } = await supabase.from('comments_posts').insert({ ...comment });
+
+  return { error, status };
 };
 
 export const removeComment = () => {
