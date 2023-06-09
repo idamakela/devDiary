@@ -19,10 +19,11 @@ export const getPost = async ({ slug }) => {
   return { data, error, status };
 };
 
-export const addPost = async (_, { arg: slug }) => {
+export const addPost = async (_, {arg: post}) => {
   //Handle add post here
   // slug is unique, handle error if its not!
-  const { error, status } = await supabase.from('posts').insert({ slug });
+  console.log({...post});
+  const { error, status } = await supabase.from('posts').insert({...post});
 
   return { error, status };
 };

@@ -1,41 +1,51 @@
 import BlogEditor from '@/components/blog-editor';
 import { createSlug } from '@/utils/createSlug';
 import useSWRMutation from 'swr/mutation';
-import { addPost, postCacheKey } from '@api-routes/posts';
+import { addPost, postCacheKey } from '@/api-routes/posts';
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
+
+//TODO: Redirect to blog page when post is created
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function CreatePost() {
-  const { trigger: addTrigger, isMutating } = useSWRMutation(cacheKey, addPost);
+  const supabaseClient = useSupabaseClient();
+  const user = useUser();
+  const router = useRouter();
+  const { trigger: addTrigger, isMutating } = useSWRMutation(
+    postCacheKey,
+    addPost
+  );
 
-  const handleAddPost = async (name) => {
-    const { error, status } = await addTrigger(name);
-
-    if (status !== 201) {
-      setToaster({
-        message: error.message,
-        type: "error",
-      });
-    }
+  const handleAddPost = async (post) => {
+    const { error, status } = await addTrigger(post);
+    console.log('post triggerd');
+    console.log(error);
   };
 
   const handleOnSubmit = ({ editorContent, titleInput, image }) => {
     const slug = createSlug(titleInput);
-    console.log({ editorContent, titleInput, image, slug });
+    const author = user.email.split('@')[0];
 
-    //swr push to database
+    //TODO: image to databse 
+    console.log({
+      body: editorContent,
+      title: titleInput,
+      image,
+      slug,
+      id: user.id,
+      author,
+    });
+
+    //SWR post to database
+    handleAddPost({
+      body: editorContent,
+      title: titleInput,
+      user_id: user.id,
+      slug,
+      author,
+    });
   };
-
-  const { trigger: addTrigger, isMutating } = useSWRMutation(
-    cacheKey,
-    addCharacter,
-    {
-      onError: () => {
-        setToaster({
-          message: 'An error occuredwhen trying to add a character',
-          type: 'error',
-        });
-      },
-    }
-  );
 
   return (
     <BlogEditor
