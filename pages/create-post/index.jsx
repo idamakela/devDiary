@@ -5,7 +5,6 @@ import { addPost, postCacheKey } from '@/api-routes/posts';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 //TODO: Redirect to blog page when post is created
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function CreatePost() {

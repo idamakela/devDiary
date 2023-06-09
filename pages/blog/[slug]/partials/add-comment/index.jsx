@@ -11,7 +11,7 @@ import { commentsCacheKey, addComment } from '@/api-routes/comments';
 export default function AddComment({ postId }) {
   const formRef = useRef(); // create a reference
   const { trigger: addTrigger, isMutating } = useSWRMutation(
-    commentsCacheKey,
+    postId ? `${commentsCacheKey}${postId}` : null,
     addComment
   );
 
@@ -33,6 +33,8 @@ export default function AddComment({ postId }) {
     // Reset the form after submission
     formRef.current.reset();
   };
+
+  //TODO: isMutating? add loading for submit comment button
 
   return (
     <div className={styles.container}>

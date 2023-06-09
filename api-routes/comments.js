@@ -10,7 +10,7 @@ export const getComments = async (post_id) => {
 
 export const addComment = async (_, {arg: comment}) => {
   //Handle add comment here
-  const { error, status } = await supabase.from('comments_posts').insert({ ...comment });
+  const { error, status } = await supabase.from('comments_posts').insert({...comment})
 
   return { error, status };
 };
