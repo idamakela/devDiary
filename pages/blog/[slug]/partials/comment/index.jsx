@@ -1,10 +1,19 @@
 import Button from '@components/button';
 import styles from './comment.module.css';
+import useSWRMutation from 'swr/mutation';
+import { commentsCacheKey, removeComment } from '@/api-routes/comments';
 
 export default function Comment({ comment, createdAt, author, id }) {
-  const handleDelete = () => {
-    console.log({ id });
+  const { trigger: deleteTrigger } = useSWRMutation(
+    commentsCacheKey,
+    removeComment
+  );
+
+  const handleDelete = async () => {
+    console.log({ id, message: 'will now be deleted' });
+    const { error, status } = await deleteTrigger(id);
   };
+
   return (
     <div className={styles.container}>
       <p>{comment}</p>
