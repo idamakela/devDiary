@@ -24,6 +24,15 @@ export default function CreatePost() {
     const slug = createSlug(titleInput);
     const author = user.email.split('@')[0];
 
+    const newPost = {
+      body: editorContent,
+      title: titleInput,
+      image,
+      slug,
+      user_id: user.id,
+      author,
+    };
+
     //TODO: image to databse
     console.log({
       body: editorContent,
@@ -34,16 +43,14 @@ export default function CreatePost() {
       author,
     });
 
-    //SWR post to database
-    handleAddPost({
-      body: editorContent,
-      title: titleInput,
-      user_id: user.id,
-      slug,
-      author,
-    });
+    //SWR post to database, without image
+    handleAddPost(newPost);
   };
 
+  /* FOR IMAGE UPLOAD:
+   * Input field for pic, and input field for pic alt
+   *
+   */
   return (
     <BlogEditor
       heading='Create post'
