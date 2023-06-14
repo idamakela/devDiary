@@ -5,7 +5,6 @@ const nextConfig = {
     domains: ['media.wired.com', 'rdhgkxlkgwfskhjqbykd.supabase.co'],
   },
 };
-
 //empty string: insert project url from error if above dont work
 
 module.exports = nextConfig;

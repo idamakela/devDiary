@@ -1,5 +1,5 @@
 import supabase from '@/lib/supabaseClient';
-import uploadImage from '@/utils/uploadImage.js';
+import { uploadImage } from '@/utils/uploadImage';
 
 export const postCacheKey = '/api/posts';
 
@@ -29,6 +29,7 @@ export const getPost = async ({ slug }) => {
 export const addPost = async (_, { arg: newPost }) => {
   //Handle upload image here
   let image = '';
+  console.log(typeof uploadImage);
 
   if (newPost?.image) {
     const { publicUrl, error } = await uploadImage(newPost?.image);

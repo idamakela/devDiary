@@ -25,7 +25,7 @@ export const uploadImage = async (file) => {
   //GET image path from bucket
   const {
     data: { publicUrl },
-    error: { publicUrlError },
+    error: publicUrlError,
   } = await supabase.storage.from('images').getPublicUrl(data.path);
 
   if (publicUrlError) {
