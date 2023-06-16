@@ -8,15 +8,15 @@ export const postCacheKey = '/api/posts';
  * semantic naming (newPost and so on...)
  */
 
+//GET all posts
 export const getPosts = async () => {
-  //Handle get all posts
   const { data, error, status } = await supabase.from('posts').select('*');
 
   return { data, error, status };
 };
 
+//GET sepcific post
 export const getPost = async ({ slug }) => {
-  //Handle get a specific post
   const { data, error, status } = await supabase
     .from('posts')
     .select('*')
@@ -26,10 +26,9 @@ export const getPost = async ({ slug }) => {
   return { data, error, status };
 };
 
+//POST a new post
 export const addPost = async (_, { arg: newPost }) => {
-  //Handle upload image here
   let image = '';
-  console.log(typeof uploadImage);
 
   if (newPost?.image) {
     const { publicUrl, error } = await uploadImage(newPost?.image);
@@ -39,9 +38,8 @@ export const addPost = async (_, { arg: newPost }) => {
     }
   }
 
-  console.log({ image }, image);
+  //console.log({ image }, image);
 
-  //Handle add post here
   const { error, status } = await supabase
     .from('posts')
     .insert({ ...newPost, image })
@@ -51,22 +49,33 @@ export const addPost = async (_, { arg: newPost }) => {
   return { error, status };
 };
 
+//DELETE a post
 export const removePost = async (_, { arg: id }) => {
-  //Handle remove post here
   const { error, status } = await supabase.from('posts').delete().eq('id', id);
 
   return { error, status };
 };
 
-export const editPost = async (_, { arg: post }) => {
-  //upload image
-  let image = post.image ?? '';
+//PUT edits into a post
+export const editPost = async (_, { arg: updatedPost }) => {
+  let image = updatedPost?.image ?? '';
 
-  //Handle edit post here
+  const isNewImage = typeof image === 'object' && image !== null;
+
+  if (isNewImage) {
+    const { publicUrl, error } = await uploadImage(updatedPost?.image);
+
+    if (!error) {
+      image = publicUrl;
+    }
+  }
+
   const { error, status } = await supabase
     .from('posts')
-    .update({ ...post })
-    .eq('id', post.id);
+    .update({ ...updatedPost, image })
+    .eq('id', updatedPost.id)
+    .select()
+    .single();
 
   //ska .eq vara med och vad isf??
   return { error, status };

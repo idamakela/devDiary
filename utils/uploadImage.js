@@ -1,6 +1,6 @@
 import supabase from '@/lib/supabaseClient';
 
-//FIXA RLS FÖR BUCKET
+//TODO: FIXA RLS FÖR BUCKET
 
 export const uploadImage = async (file) => {
   const fullFileName = file.name.split('.');
@@ -32,7 +32,7 @@ export const uploadImage = async (file) => {
     return { error: publicUrlError };
   }
 
-  console.log({ data });
+  //console.log({ data });
 
   //RETURN image url to client
   return { error: false, publicUrl };
