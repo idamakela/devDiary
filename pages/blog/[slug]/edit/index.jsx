@@ -61,3 +61,44 @@ export default function EditBlogPost() {
     />
   );
 }
+
+//NEXT getServerSideProps
+//gör att kod körs på servern (iom pages är klientrenderat)
+//nedan kod kollar om ägaren till posten är inloggad osv...
+/*
+export const getServerSideProps = async (ctx) => {
+  const supabase = createPagesServerClient(ctx);
+
+  const { slug } = ctx.params;
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  const { ðata } = await supabase
+    .from('posts')
+    .select()
+    .single()
+    .eq('slug', slug);
+
+  console.log({ data });
+  console.log({ session });
+
+  const isAuthor = data.user_id === session.user.id;
+  console.log({ isAuthor });
+
+  //redirects user to destination 
+  if (!isAuthor) {
+    return {
+      redirect: {
+        destination: `/blog/${slug}`,
+        permanent: true,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
+*/
