@@ -1,7 +1,12 @@
 import supabase from '@/lib/supabaseClient';
+import { uploadImage } from '@/utils/uploadImage';
+
 export const postCacheKey = '/api/posts';
 
-//TODO: error handling
+/* TODO:
+ * error handling
+ * semantic naming (newPost and so on...)
+ */
 
 export const getPosts = async () => {
   //Handle get all posts
@@ -21,9 +26,27 @@ export const getPost = async ({ slug }) => {
   return { data, error, status };
 };
 
-export const addPost = async (_, { arg: post }) => {
+export const addPost = async (_, { arg: newPost }) => {
+  //Handle upload image here
+  let image = '';
+  console.log(typeof uploadImage);
+
+  if (newPost?.image) {
+    const { publicUrl, error } = await uploadImage(newPost?.image);
+
+    if (!error) {
+      image = publicUrl;
+    }
+  }
+
+  console.log({ image }, image);
+
   //Handle add post here
-  const { error, status } = await supabase.from('posts').insert({ ...post });
+  const { error, status } = await supabase
+    .from('posts')
+    .insert({ ...newPost, image })
+    .select()
+    .single();
 
   return { error, status };
 };
@@ -36,6 +59,9 @@ export const removePost = async (_, { arg: id }) => {
 };
 
 export const editPost = async (_, { arg: post }) => {
+  //upload image
+  let image = post.image ?? '';
+
   //Handle edit post here
   const { error, status } = await supabase
     .from('posts')
