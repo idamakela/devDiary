@@ -1,7 +1,7 @@
 import BlogEditor from '@/components/blog-editor';
-import { createSlug } from '@/utils/createSlug';
 import useSWRMutation from 'swr/mutation';
 import { addPost, postCacheKey } from '@/api-routes/posts';
+import { createSlug } from '@/utils/createSlug';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 //TODO: Redirect to blog page when post is created
@@ -11,6 +11,7 @@ export default function CreatePost() {
   const supabaseClient = useSupabaseClient();
   const user = useUser();
   const router = useRouter();
+
   const { trigger: addTrigger, isMutating } = useSWRMutation(
     postCacheKey,
     addPost

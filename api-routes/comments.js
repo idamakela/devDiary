@@ -3,21 +3,29 @@ export const commentsCacheKey = '/api/comments';
 
 export const getComments = async (post_id) => {
   //Handle get all comments
-  const { data, error, status } = await supabase.from('comments_posts').select('*').eq("post_id", post_id);
+  const { data, error, status } = await supabase
+    .from('comments')
+    .select('*')
+    .eq('post_id', post_id);
 
   return { data, error, status };
 };
 
-export const addComment = async (_, {arg: comment}) => {
+export const addComment = async (_, { arg: comment }) => {
   //Handle add comment here
-  const { error, status } = await supabase.from('comments_posts').insert({...comment})
+  const { error, status } = await supabase
+    .from('comments')
+    .insert({ ...comment });
 
   return { error, status };
 };
 
-export const removeComment = async (_, {arg: id}) => {
+export const removeComment = async (_, { arg: id }) => {
   //Handle remove comment here
-  const { error, status } = await supabase.from('comments_posts').delete().eq('id', id);
+  const { error, status } = await supabase
+    .from('comments')
+    .delete()
+    .eq('id', id);
 
   return { error, status };
 };

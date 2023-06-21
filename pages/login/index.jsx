@@ -1,9 +1,9 @@
 import Heading from '@components/heading';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 const LoginPage = () => {
   const supabaseClient = useSupabaseClient();

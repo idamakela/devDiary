@@ -1,21 +1,26 @@
-import { useRouter } from 'next/router';
-import styles from './blog-post.module.css';
-import Comments from './partials/comments';
 import AddComment from './partials/add-comment';
-import Button from '@components/button';
-import Heading from '@components/heading';
 import BlogImageBanner from '@components/blog-image-banner';
-
-//import swr, functions and cacheKey
+import Button from '@components/button';
+import Comments from './partials/comments';
+import Heading from '@components/heading';
+import styles from './blog-post.module.css';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { postCacheKey, getPost, removePost } from '@/api-routes/posts';
+import { useRouter } from 'next/router';
+// import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
+
+import { isAuthorLogedIn } from '@utils/isAuthorLogedIn';
 
 export default function BlogPost() {
-  const router = useRouter();
+  // const supabaseClient = useSupabaseClient();
+  // const user = useUser();
 
-  /* Use this slug to fetch the post from the database */
+  const router = useRouter();
   const { slug } = router.query;
+
+  console.log(user);
+  //console.log(user.id);
 
   //fetch a SPECIFIC post
   const {
@@ -23,6 +28,8 @@ export default function BlogPost() {
     error,
     status,
   } = useSWR(slug ? `${postCacheKey}${slug}` : null, () => getPost({ slug }));
+
+  console.log(data.user_id);
 
   //DELETE post
   const { trigger: deleteTrigger } = useSWRMutation(postCacheKey, removePost);
@@ -35,6 +42,20 @@ export default function BlogPost() {
   const handleEditPost = () => {
     router.push(`/blog/${slug}/edit`);
   };
+
+  // const isAuthUser = () => {
+  //   if (!user) {
+  //     return false;
+  //   }
+
+  //   if (user.id === data.user_id) {
+  //     return true;
+  //   }
+
+  //   return false;
+  // };
+
+  // console.log(isAuthUser());
 
   return (
     <>
@@ -49,10 +70,12 @@ export default function BlogPost() {
         <span className={styles.author}>Author: {data.author}</span>
 
         {/* The Delete & Edit part should only be showed if you are authenticated and you are the author */}
-        <div className={styles.buttonContainer}>
-          <Button onClick={() => handleDeletePost(data.id)}>Delete</Button>
-          <Button onClick={handleEditPost}>Edit</Button>
-        </div>
+        {isAuthorLogedIn({ postAuthor: data.user_id }) && (
+          <div className={styles.buttonContainer}>
+            <Button onClick={() => handleDeletePost(data.id)}>Delete</Button>
+            <Button onClick={handleEditPost}>Edit</Button>
+          </div>
+        )}
       </section>
 
       <Comments postId={data.id} />
