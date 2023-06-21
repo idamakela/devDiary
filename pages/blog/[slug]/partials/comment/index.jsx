@@ -28,8 +28,6 @@ export default function Comment({
       <p>{comment}</p>
       <p className={styles.author}>{author}</p>
       <time className={styles.date}>{createdAt}</time>
-
-      {/* TODO: fetch user info from @api-routes/user.js ?? */}
       {isAuthorLogedIn({ postAuthor: postAuthorId }) && (
         <div className={styles.buttonContainer}>
           <Button onClick={handleDelete}>Delete</Button>

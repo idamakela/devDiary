@@ -30,11 +30,11 @@ export default function EditBlogPost() {
       id: data.id,
     };
 
-    console.log({ updatedPost });
+    //console.log({ updatedPost });
 
     const { error, status } = await editTrigger(updatedPost);
 
-    console.log({ error });
+    //console.log({ error });
   };
 
   return (
