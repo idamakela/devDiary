@@ -63,7 +63,7 @@ export const getServerSideProps = async (ctx) => {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const { ðata } = await supabase
+  const { data } = await supabase
     .from('posts')
     .select()
     .single()

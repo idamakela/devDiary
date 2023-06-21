@@ -3,7 +3,7 @@ import Comment from '../comment';
 import useSWR from 'swr';
 import { commentsCacheKey, getComments } from '@/api-routes/comments';
 
-export default function Comments({ postId }) {
+export default function Comments({ postId, postAuthorId }) {
   //GET post comments
   const {
     data: { data = [] } = {},
@@ -19,7 +19,7 @@ export default function Comments({ postId }) {
     <div className={styles.container}>
       <h2>Comments</h2>
       {data?.map((comment) => (
-        <Comment key={comment.id} {...comment} />
+        <Comment key={comment.id} {...comment} postAuthorId={postAuthorId}/>
       ))}
     </div>
   );
