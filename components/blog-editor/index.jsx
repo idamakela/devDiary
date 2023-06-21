@@ -1,11 +1,11 @@
-import styles from './blog-editor.module.css';
-import Editor from '@components/editor/editor';
-import { useState } from 'react';
 import Button from '@components/button';
-import Input from '@components/input';
-import Label from '@components/label';
+import Editor from '@components/editor/editor';
 import Heading from '@components/heading';
 import ImageUpload from '@components/upload-image';
+import Input from '@components/input';
+import Label from '@components/label';
+import styles from './blog-editor.module.css';
+import { useState } from 'react';
 
 export default function BlogEditor({
   content = '',

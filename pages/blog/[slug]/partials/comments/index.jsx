@@ -1,5 +1,5 @@
-import styles from './comments.module.css';
 import Comment from '../comment';
+import styles from './comments.module.css';
 import useSWR from 'swr';
 import { commentsCacheKey, getComments } from '@/api-routes/comments';
 
@@ -13,14 +13,13 @@ export default function Comments({ postId, postAuthorId }) {
     getComments(postId)
   );
 
-  //TODO: display 'no comments' if there is no data, otherwise the below function
-
   return (
     <div className={styles.container}>
       <h2>Comments</h2>
       {data?.map((comment) => (
-        <Comment key={comment.id} {...comment} postAuthorId={postAuthorId}/>
+        <Comment key={comment.id} {...comment} postAuthorId={postAuthorId} />
       ))}
+      {!data.length && <p>No comments</p>}
     </div>
   );
 }

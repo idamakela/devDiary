@@ -6,9 +6,9 @@ import Heading from '@components/heading';
 import styles from './blog-post.module.css';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
+import { isAuthorLogedIn } from '@/utils/isAuthorLogedIn';
 import { postCacheKey, getPost, removePost } from '@/api-routes/posts';
 import { useRouter } from 'next/router';
-import { isAuthorLogedIn } from '@/utils/isAuthorLogedIn';
 
 export default function BlogPost() {
   const router = useRouter();
@@ -53,9 +53,8 @@ export default function BlogPost() {
         )}
       </section>
 
-      <Comments postId={data.id} postAuthorId={data.user_id}/>
+      <Comments postId={data.id} postAuthorId={data.user_id} />
 
-      {/* This component should only be displayed if a user is authenticated */}
       <AddComment postId={data.id} />
     </>
   );

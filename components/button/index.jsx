@@ -1,5 +1,5 @@
-import styles from "./button.module.css";
 import classNames from "classnames";
+import styles from "./button.module.css";
 
 export default function Button({ children, className, ...props }) {
   return (

@@ -77,6 +77,5 @@ export const editPost = async (_, { arg: updatedPost }) => {
     .select()
     .single();
 
-  //ska .eq vara med och vad isf??
   return { error, status };
 };

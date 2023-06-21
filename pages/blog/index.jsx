@@ -1,6 +1,6 @@
+import Heading from '@components/heading';
 import Link from 'next/link';
 import styles from './blog.module.css';
-import Heading from '@components/heading';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { postCacheKey, getPosts } from '@/api-routes/posts';

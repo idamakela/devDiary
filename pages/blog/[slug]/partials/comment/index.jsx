@@ -16,10 +16,10 @@ export default function Comment({
     removeComment
   );
 
-  console.log({ postAuthorId });
+  //console.log({ postAuthorId });
 
   const handleDelete = async () => {
-    console.log({ id, message: 'will now be deleted' });
+    //console.log({ id, message: 'will now be deleted' });
     const { error, status } = await deleteTrigger(id);
   };
 
@@ -29,8 +29,7 @@ export default function Comment({
       <p className={styles.author}>{author}</p>
       <time className={styles.date}>{createdAt}</time>
 
-      {/* The Delete part should only be showed if you are authenticated and you are the author */}
-      {/* TODO: fetch user info from @api-routes/user.js */}
+      {/* TODO: fetch user info from @api-routes/user.js ?? */}
       {isAuthorLogedIn({ postAuthor: postAuthorId }) && (
         <div className={styles.buttonContainer}>
           <Button onClick={handleDelete}>Delete</Button>
