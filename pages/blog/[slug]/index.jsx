@@ -26,7 +26,7 @@ export default function BlogPost() {
 
   const handleDeletePost = async (id) => {
     const { error, status } = await deleteTrigger(id);
-    //TODO: send user to blog page when post is deleted
+    router.push('/blog')
   };
 
   const handleEditPost = () => {

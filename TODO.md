@@ -1,5 +1,4 @@
 - error handling
-- re-routing
 - clean up code
 - loadin ui (isMutating)
   - adding posts, comment, image, delete ...
