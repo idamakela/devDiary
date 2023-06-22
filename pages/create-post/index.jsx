@@ -2,13 +2,12 @@ import BlogEditor from '@/components/blog-editor';
 import useSWRMutation from 'swr/mutation';
 import { addPost, postCacheKey } from '@/api-routes/posts';
 import { createSlug } from '@/utils/createSlug';
-import { useUser } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
+import { useUser } from '@supabase/auth-helpers-react';
 
 export default function CreatePost() {
   const user = useUser();
   const router = useRouter();
-
   const { trigger: addTrigger, isMutating } = useSWRMutation(
     postCacheKey,
     addPost
@@ -16,6 +15,11 @@ export default function CreatePost() {
 
   const handleAddPost = async (post) => {
     const { error, status } = await addTrigger(post);
+
+    if (error || status !== 201) {
+      console.log({ status, error });
+      return;
+    }
   };
 
   const handleOnSubmit = async ({ editorContent, titleInput, image }) => {
@@ -35,10 +39,6 @@ export default function CreatePost() {
     router.push(`/blog/${slug}`);
   };
 
-  /* FOR IMAGE UPLOAD:
-   * Input field for pic, and input field for pic alt
-   *
-   */
   return (
     <BlogEditor
       heading='Create post'

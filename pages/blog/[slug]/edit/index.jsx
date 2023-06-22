@@ -9,7 +9,7 @@ export default function EditBlogPost() {
   const router = useRouter();
   const { slug } = router.query;
 
-  //fetch a SPECIFIC post
+  //GET specific post
   const {
     data: { data = [] } = {},
     error,
@@ -30,11 +30,19 @@ export default function EditBlogPost() {
       id: data.id,
     };
 
-    //console.log({ updatedPost });
-
+    console.log({ slug, newSlug });
     const { error, status } = await editTrigger(updatedPost);
 
-    //console.log({ error });
+    if (error || status !== 200) {
+      console.log({ status, error });
+      return;
+    }
+
+    if (newSlug && newSlug !== slug) {
+      router.push(`/blog/${newSlug}`);
+    } else {
+      router.push(`/blog/${slug}`);
+    }
   };
 
   return (

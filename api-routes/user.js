@@ -1,17 +1,32 @@
-// import supabase from '../lib/supabaseClient';
-// export const usersCacheKey = '/api/users';
+//NOT IN USE
+//saved only for possible future implementation 
 
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
+import supabase from '@/lib/supabaseClient';
+export const usersCacheKey = '/api/users';
 
-export const getUser = () => {
-  //Handle get authenticated user information
-  const supabaseClient = useSupabaseClient();
-  const user = useUser();
+//GET user info
+export const getUser = async ({authUserId}) => {
+  const { data, error, status } = await supabase
+    .from('users')
+    .select('*')
+    .single()
+    .eq('id', authUserId);
 
-  return user;
+  return { data, error, status };
 };
 
-/*
- * TODO: what is supposed to be in here ??
- * 
- */
+// PUT updates into user
+export const editUser = async (_, { arg: name, userId }) => {
+  if (!userId) {
+    return null;
+  }
+
+  const { data, error, status } = await supabase
+    .from('users')
+    .update({ name })
+    .eq('id', user.id)
+    .select()
+    .single();
+
+  return { error, status };
+};

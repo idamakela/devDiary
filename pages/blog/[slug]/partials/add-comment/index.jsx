@@ -30,11 +30,8 @@ export default function AddComment({ postId }) {
       post_id: postId,
     });
 
-    // Reset the form after submission
     formRef.current.reset();
   };
-
-  //TODO: isMutating? add loading for submit comment button
 
   return (
     <div className={styles.container}>
@@ -51,7 +48,7 @@ export default function AddComment({ postId }) {
         </div>
 
         <Button className={styles.addCommentButton} type='submit'>
-          Submit
+          {isMutating ? 'Submiting...': 'Submit'}
         </Button>
       </form>
     </div>

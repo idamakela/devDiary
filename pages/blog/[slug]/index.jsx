@@ -26,7 +26,13 @@ export default function BlogPost() {
 
   const handleDeletePost = async (id) => {
     const { error, status } = await deleteTrigger(id);
-    router.push('/blog')
+
+    if (error || status !== 204) {
+      console.log({ status, error });
+      return;
+    }
+
+    router.push('/blog');
   };
 
   const handleEditPost = () => {

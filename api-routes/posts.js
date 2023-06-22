@@ -3,11 +3,6 @@ import { uploadImage } from '@/utils/uploadImage';
 
 export const postCacheKey = '/api/posts';
 
-/* TODO:
- * error handling
- * semantic naming (newPost and so on...)
- */
-
 //GET all posts
 export const getPosts = async () => {
   const { data, error, status } = await supabase.from('posts').select('*');

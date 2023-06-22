@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import RootLayout from '../components/root-layout';
-import supabase  from '@/lib/supabaseClient';
+import supabase from '@/lib/supabaseClient';
 import type { AppProps } from 'next/app';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 

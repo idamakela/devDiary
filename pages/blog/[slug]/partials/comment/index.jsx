@@ -11,16 +11,18 @@ export default function Comment({
   id,
   postAuthorId,
 }) {
-  const { trigger: deleteTrigger } = useSWRMutation(
+  const { trigger: deleteTrigger, isMutating } = useSWRMutation(
     commentsCacheKey,
     removeComment
   );
 
-  //console.log({ postAuthorId });
-
   const handleDelete = async () => {
-    //console.log({ id, message: 'will now be deleted' });
     const { error, status } = await deleteTrigger(id);
+
+    if (error || status !== 204) {
+      console.log({ status, error });
+      return;
+    }
   };
 
   return (
@@ -30,7 +32,7 @@ export default function Comment({
       <time className={styles.date}>{createdAt}</time>
       {isAuthorLogedIn({ postAuthor: postAuthorId }) && (
         <div className={styles.buttonContainer}>
-          <Button onClick={handleDelete}>Delete</Button>
+          <Button onClick={handleDelete}>{isMutating ? 'Deleting...' : 'Delete'}</Button>
         </div>
       )}
     </div>

@@ -1,4 +1,3 @@
-- error handling
 - clean up code
 - loadin ui (isMutating)
   - adding posts, comment, image, delete ...
@@ -20,3 +19,8 @@
 
 - GitHub repo url
 - Vercel deployment (beaware of .env)
+
+
+### ISSUES
+
+- super slow at updating ui if a comment has been deleted

@@ -2,16 +2,15 @@ import Heading from '@components/heading';
 import Link from 'next/link';
 import styles from './blog.module.css';
 import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation';
 import { postCacheKey, getPosts } from '@/api-routes/posts';
 import { useUser } from '@supabase/auth-helpers-react';
 
 export default function Blog() {
-  //fetch ALL posts AND display on blog overview
+  //GET all blog posts
   const { data: { data = [] } = {} } = useSWR(postCacheKey, getPosts);
 
-  //see active user
-  const user = useUser()
+  //LOG active user
+  const user = useUser();
   console.log(user);
 
   return (
