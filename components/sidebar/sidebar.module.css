@@ -5,9 +5,9 @@
   padding-left: 0;
 }
 
-.webName {
+.websiteName {
   font-size: 1.5em;
-  padding: 5px 5px 10px 10px;
+  padding: 5px 10px 5px 10px;
 }
 
 @media (min-width: 768px) {

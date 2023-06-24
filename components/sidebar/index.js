@@ -47,7 +47,7 @@ export default function Navbar() {
     <aside className={styles.container}>
       <div className={styles.sticky}>
         <nav className={styles.navigation} id='nav'>
-          <h2 className={styles.webName}>devDiary;</h2>
+          <h2 className={styles.websiteName}>devDiary;</h2>
           <div className={styles.navigationItemWrapper}>
             {Object.entries(navItems).map(
               ([path, { name, requiresAuth, onClick }]) => {
