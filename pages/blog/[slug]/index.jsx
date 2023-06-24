@@ -45,7 +45,7 @@ export default function BlogPost() {
         <Heading>{data.title}</Heading>
         {data?.image && <BlogImageBanner src={data.image} alt={data.title} />}
         <div className={styles.dateContainer}>
-          <time className={styles.date}>{data.createdAt}</time>
+          <time className={styles.date}>{data.created_at}</time>
           <div className={styles.border} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: data.body }} />
