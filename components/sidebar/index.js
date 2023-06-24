@@ -17,28 +17,28 @@ export default function Navbar() {
 
   const navItems = {
     '/': {
-      name: 'Home',
+      name: 'home',
     },
     '/about': {
-      name: 'About',
+      name: 'about',
     },
     '/blog': {
-      name: 'Blog',
+      name: 'blog',
     },
     '/create-post': {
-      name: 'Create post',
+      name: 'createPost',
       requiresAuth: true,
     },
     '/login': {
-      name: 'Login',
+      name: 'login',
       requiresAuth: false,
     },
     '/logout': {
-      name: 'Logout',
+      name: 'logout',
       requiresAuth: true,
       onClick: async () => {
         await supabaseClient.auth.signOut();
-        router.push('/login') //sends user to login after sign out 
+        router.push('/login'); //sends user to login after sign out
       },
     },
   };
@@ -47,6 +47,7 @@ export default function Navbar() {
     <aside className={styles.container}>
       <div className={styles.sticky}>
         <nav className={styles.navigation} id='nav'>
+          <h2 className={styles.webName}>devDiary;</h2>
           <div className={styles.navigationItemWrapper}>
             {Object.entries(navItems).map(
               ([path, { name, requiresAuth, onClick }]) => {
