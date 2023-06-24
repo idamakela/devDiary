@@ -48,7 +48,7 @@ export default function AddComment({ postId }) {
         </div>
 
         <Button className={styles.addCommentButton} type='submit'>
-          {isMutating ? 'Submiting...': 'Submit'}
+          {isMutating ? 'Submiting...' : 'Submit'}
         </Button>
       </form>
     </div>

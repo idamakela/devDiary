@@ -30,11 +30,14 @@ export default function Comment({
       <p>{comment}</p>
       <p className={styles.author}>{author}</p>
       <time className={styles.date}>{createdAt}</time>
+      <div className={styles.buttonContainer}>
       {isAuthorLogedIn({ postAuthor: postAuthorId }) && (
-        <div className={styles.buttonContainer}>
-          <Button onClick={handleDelete}>{isMutating ? 'Deleting...' : 'Delete'}</Button>
-        </div>
+          <Button onClick={handleDelete}>
+            {isMutating ? 'Deleting...' : 'Delete'}
+          </Button>
       )}
+      <Button onClick={() => console.log('hi, adding a reply should happen if i click this!')}>Reply</Button>
+        </div>
     </div>
   );
 }
