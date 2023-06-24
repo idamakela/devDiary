@@ -25,19 +25,31 @@ export default function Comment({
     }
   };
 
+  let addReply = false;
+
+  const handleReply = () => {
+    addReply = true;
+  }
+
   return (
     <div className={styles.container}>
       <p>{comment}</p>
       <p className={styles.author}>{author}</p>
       <time className={styles.date}>{createdAt}</time>
       <div className={styles.buttonContainer}>
-      {isAuthorLogedIn({ postAuthor: postAuthorId }) && (
+        {isAuthorLogedIn({ postAuthor: postAuthorId }) && (
           <Button onClick={handleDelete}>
             {isMutating ? 'Deleting...' : 'Delete'}
           </Button>
-      )}
-      <Button onClick={() => console.log('hi, adding a reply should happen if i click this!')}>Reply</Button>
-        </div>
+        )}
+        <Button
+          onClick={() =>
+            console.log('hi, adding a reply should happen if i click this!')
+          }
+        >
+          Reply
+        </Button>
+      </div>
     </div>
   );
 }
