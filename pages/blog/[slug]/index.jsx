@@ -7,6 +7,7 @@ import styles from './blog-post.module.css';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { isAuthorLogedIn } from '@/utils/isAuthorLogedIn';
+import { manipulateDate } from '@/utils/manipulateDate';
 import { postCacheKey, getPost, removePost } from '@/api-routes/posts';
 import { useRouter } from 'next/router';
 
@@ -45,7 +46,7 @@ export default function BlogPost() {
         <Heading>{data.title}</Heading>
         {data?.image && <BlogImageBanner src={data.image} alt={data.title} />}
         <div className={styles.dateContainer}>
-          <time className={styles.date}>{data.created_at}</time>
+          <time className={styles.date}>{manipulateDate(data.created_at)}</time>
           <div className={styles.border} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: data.body }} />

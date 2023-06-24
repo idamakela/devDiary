@@ -2,6 +2,7 @@ import Heading from '@components/heading';
 import Link from 'next/link';
 import styles from './blog.module.css';
 import useSWR from 'swr';
+import { manipulateDate } from '@/utils/manipulateDate';
 import { postCacheKey, getPosts } from '@/api-routes/posts';
 import { useUser } from '@supabase/auth-helpers-react';
 
@@ -24,7 +25,9 @@ export default function Blog() {
         >
           <div className='w-full flex flex-col'>
             <p>{post.title}</p>
-            <time className={styles.date}>{post.created_at}</time>
+            <time className={styles.date}>
+              {manipulateDate(post.created_at)}
+            </time>
           </div>
         </Link>
       ))}
