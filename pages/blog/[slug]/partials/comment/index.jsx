@@ -25,8 +25,8 @@ export default function Comment({
     error,
     status,
   } = useSWR(id ? `${repliesCacheKey}${id}` : null, () => getReplies(id));
-  console.log({data})
-  console.log({error, status})
+  console.log({ data });
+  console.log({ error, status });
 
   const { trigger: deleteTrigger, isMutating } = useSWRMutation(
     commentsCacheKey,
@@ -68,17 +68,21 @@ export default function Comment({
           <Button onClick={handleReply}>{!reply ? 'Reply' : 'Exit'}</Button>
         </div>
       </div>
-      <div className={styles.repliesContainer}>
-        {reply && <AddReply commentId={id} reply={reply} setReply={setReply} />}
-        {data?.map((reply) => (
-          <Reply
-            key={reply.id}
-            {...reply}
-            postAuthorId={postAuthorId}
-            handleDelete={handleDelete}
-          />
-        ))}
-      </div>
+      {data && data.length > 0 && (
+        <div className={styles.repliesContainer}>
+          {reply && (
+            <AddReply commentId={id} reply={reply} setReply={setReply} />
+          )}
+          {data.map((reply) => (
+            <Reply
+              key={reply.id}
+              {...reply}
+              postAuthorId={postAuthorId}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 }

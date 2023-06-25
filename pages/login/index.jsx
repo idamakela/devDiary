@@ -20,7 +20,7 @@ const LoginPage = () => {
     <>
       <Heading>Login</Heading>
       <Auth
-        redirectTo='http://localhost:3000/'
+        redirectTo='https://devdiary-chi.vercel.app/'
         appearance={{ theme: ThemeSupa }}
         supabaseClient={supabaseClient}
         providers={[]}
