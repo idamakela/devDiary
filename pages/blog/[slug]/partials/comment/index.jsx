@@ -1,11 +1,13 @@
+import AddReply from '../partials/add-reply';
 import Button from '@components/button';
+import Reply from '../partials/reply';
 import styles from './comment.module.css';
+import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { commentsCacheKey, removeComment } from '@/api-routes/comments';
-import { isAuthorLogedIn } from '@/utils/isAuthorLogedIn';
-import useSWR from 'swr';
 import { getReplies, repliesCacheKey } from '@/api-routes/replies';
-import Reply from '../partials/reply';
+import { isAuthorLogedIn } from '@/utils/isAuthorLogedIn';
+import { useState } from 'react';
 
 export default function Comment({
   comment,
@@ -14,6 +16,8 @@ export default function Comment({
   id,
   postAuthorId,
 }) {
+  const [reply, setReply] = useState(false);
+
   //GET post comments
   const {
     data: { data = [] } = {},
@@ -42,7 +46,8 @@ export default function Comment({
   };
 
   const handleReply = () => {
-    console.log('hi, this should send user to add-reply');
+    console.log('pressend reply button');
+    setReply(!reply);
   };
 
   return (
@@ -57,10 +62,10 @@ export default function Comment({
               {isMutating ? 'Deleting...' : 'Delete'}
             </Button>
           )}
-          <Button onClick={handleReply}>Reply</Button>
+          <Button onClick={handleReply}>{!reply ? 'Reply' : 'Exit'}</Button>
         </div>
       </div>
-      {/* {add-reply} */}
+      {reply && <AddReply commentId={id} reply={reply} setReply={setReply} />}
       {data?.map((reply) => (
         <Reply
           key={reply.id}

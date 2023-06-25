@@ -10,6 +10,7 @@ import { commentsCacheKey, addComment } from '@/api-routes/comments';
 
 export default function AddComment({ postId }) {
   const formRef = useRef(); // create a reference
+
   const { trigger: addTrigger, isMutating } = useSWRMutation(
     postId ? `${commentsCacheKey}${postId}` : null,
     addComment
@@ -29,6 +30,11 @@ export default function AddComment({ postId }) {
       comment,
       post_id: postId,
     });
+
+    if (error || status !== 201) {
+      console.log({ status, error });
+      return;
+    }
 
     formRef.current.reset();
   };

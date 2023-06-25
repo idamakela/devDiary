@@ -12,7 +12,7 @@ export const getReplies = async (comment_id) => {
   return { data, error, status };
 };
 
-//POST a new reply
+//POST reply
 export const addReply = async (_, { arg: reply }) => {
   const { error, status } = await supabase.from('replies').insert({ ...reply });
 
