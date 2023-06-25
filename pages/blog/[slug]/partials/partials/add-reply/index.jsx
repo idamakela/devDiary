@@ -3,9 +3,9 @@ import Input from '@components/input';
 import Label from '@components/label';
 import TextArea from '@components/text-area';
 import styles from '../../add-comment/add-comment.module.css';
-import { useRef } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { repliesCacheKey, addReply } from '@/api-routes/replies';
+import { useRef } from 'react';
 
 export default function AddReply({ commentId, reply, setReply }) {
   const formRef = useRef(); // create a reference

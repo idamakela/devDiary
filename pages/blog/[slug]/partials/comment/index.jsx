@@ -8,6 +8,7 @@ import { commentsCacheKey, removeComment } from '@/api-routes/comments';
 import { getReplies, repliesCacheKey } from '@/api-routes/replies';
 import { isAuthorLogedIn } from '@/utils/isAuthorLogedIn';
 import { useState } from 'react';
+import { manipulateDate } from '@/utils/manipulateDate';
 
 export default function Comment({
   comment,
@@ -55,7 +56,7 @@ export default function Comment({
       <div className={styles.container}>
         <p>{comment}</p>
         <p className={styles.author}>{author}</p>
-        <time className={styles.date}>{created_at}</time>
+        <time className={styles.date}>{manipulateDate(created_at)}</time>
         <div className={styles.buttonContainer}>
           {isAuthorLogedIn({ postAuthor: postAuthorId }) && (
             <Button onClick={() => handleDelete(id, deleteTrigger)}>
@@ -65,15 +66,17 @@ export default function Comment({
           <Button onClick={handleReply}>{!reply ? 'Reply' : 'Exit'}</Button>
         </div>
       </div>
-      {reply && <AddReply commentId={id} reply={reply} setReply={setReply} />}
-      {data?.map((reply) => (
-        <Reply
-          key={reply.id}
-          {...reply}
-          postAuthorId={postAuthorId}
-          handleDelete={handleDelete}
-        />
-      ))}
+      <div className={styles.repliesContainer}>
+        {reply && <AddReply commentId={id} reply={reply} setReply={setReply} />}
+        {data?.map((reply) => (
+          <Reply
+            key={reply.id}
+            {...reply}
+            postAuthorId={postAuthorId}
+            handleDelete={handleDelete}
+          />
+        ))}
+      </div>
     </>
   );
 }
