@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router';
 import BlogEditor from '@/components/blog-editor';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { postCacheKey, getPost, editPost } from '@/api-routes/posts';
 import { createSlug } from '@/utils/createSlug';
+import { postCacheKey, getPost, editPost } from '@/api-routes/posts';
+import { useRouter } from 'next/router';
 
 export default function EditBlogPost() {
   const router = useRouter();
@@ -57,44 +57,3 @@ export default function EditBlogPost() {
     />
   );
 }
-
-//NEXT getServerSideProps
-//gör att kod körs på servern (iom pages är klientrenderat)
-//nedan kod kollar om ägaren till posten är inloggad osv...
-/*
-export const getServerSideProps = async (ctx) => {
-  const supabase = createPagesServerClient(ctx);
-
-  const { slug } = ctx.params;
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  const { data } = await supabase
-    .from('posts')
-    .select()
-    .single()
-    .eq('slug', slug);
-
-  console.log({ data });
-  console.log({ session });
-
-  const isAuthor = data.user_id === session.user.id;
-  console.log({ isAuthor });
-
-  //redirects user to destination 
-  if (!isAuthor) {
-    return {
-      redirect: {
-        destination: `/blog/${slug}`,
-        permanent: true,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
-*/

@@ -11,9 +11,9 @@ import { useState } from 'react';
 import { manipulateDate } from '@/utils/manipulateDate';
 
 export default function Comment({
+  author,
   comment,
   created_at,
-  author,
   id,
   postAuthorId,
 }) {
@@ -49,7 +49,7 @@ export default function Comment({
   };
 
   const handleReply = () => {
-    console.log('pressend reply button');
+    console.log('pressed reply button');
     setReply(!reply);
   };
 

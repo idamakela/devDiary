@@ -1,6 +1,5 @@
 import supabase from '@/lib/supabaseClient';
 
-//TODO: FIXA RLS FÖR BUCKET ??
 export const uploadImage = async (file) => {
   const fullFileName = file.name.split('.');
   const fileName = fullFileName[0];

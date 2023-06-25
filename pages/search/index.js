@@ -2,14 +2,13 @@ import Button from '@components/button';
 import Heading from '@components/heading';
 import Input from '@components/input';
 import Label from '@components/label';
+import Link from 'next/link';
+import resultStyling from '../blog/blog.module.css';
 import styles from './search.module.css';
 import useSWR from 'swr';
+import { manipulateDate } from '@/utils/manipulateDate';
 import { searchPosts, postCacheKey } from '@/api-routes/posts';
 import { useRef, useState } from 'react';
-
-import Link from 'next/link';
-import { manipulateDate } from '@/utils/manipulateDate';
-import resultStyling from '../blog/blog.module.css';
 
 export default function Search() {
   const formRef = useRef();

@@ -6,12 +6,12 @@ import { isAuthorLogedIn } from '@/utils/isAuthorLogedIn';
 import { manipulateDate } from '@/utils/manipulateDate';
 
 export default function Reply({
-  id,
-  reply,
   author,
   created_at,
-  postAuthorId,
   handleDelete,
+  id,
+  postAuthorId,
+  reply,
 }) {
   const { trigger: replyDeleteTrigger, isMutating } = useSWRMutation(
     repliesCacheKey,

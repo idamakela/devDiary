@@ -1,14 +1,3 @@
-- clean up code
-- loadin ui (isMutating)
-  - adding posts, comment, image, delete ...
-
-### VG
-
-- search blog posts
-- nested comments
-  - error handling for useSWR
-- look over rls
-
 ### Extra stuff
 
 - add content to pages
@@ -16,12 +5,6 @@
 - Pagination
 - Minimal personalized style
 
-### Assignement submission
-
-- GitHub repo url
-- Vercel deployment (beaware of .env)
-
-
-### ISSUES
+### Possible issues
 
 - super slow at updating ui if a comment has been deleted

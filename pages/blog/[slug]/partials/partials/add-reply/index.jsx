@@ -17,7 +17,6 @@ export default function AddReply({ commentId, reply, setReply }) {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    // Alternative way to get the form data
     const formData = new FormData(event.target);
     const { author, comment } = Object.fromEntries(formData);
 

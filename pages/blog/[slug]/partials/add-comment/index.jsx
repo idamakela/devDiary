@@ -3,10 +3,9 @@ import Input from '@components/input';
 import Label from '@components/label';
 import TextArea from '@components/text-area';
 import styles from './add-comment.module.css';
-import { useRef } from 'react';
-
 import useSWRMutation from 'swr/mutation';
 import { commentsCacheKey, addComment } from '@/api-routes/comments';
+import { useRef } from 'react';
 
 export default function AddComment({ postId }) {
   const formRef = useRef(); // create a reference
@@ -18,9 +17,7 @@ export default function AddComment({ postId }) {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    // Alternative way to get the form data
     const formData = new FormData(event.target);
-
     const { author, comment } = Object.fromEntries(formData);
 
     //PUSH to posts comment to database
