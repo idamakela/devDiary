@@ -25,6 +25,8 @@ export default function Comment({
     error,
     status,
   } = useSWR(id ? `${repliesCacheKey}${id}` : null, () => getReplies(id));
+  console.log({data})
+  console.log({error, status})
 
   const { trigger: deleteTrigger, isMutating } = useSWRMutation(
     commentsCacheKey,
