@@ -68,7 +68,7 @@ export default function Comment({
           <Button onClick={handleReply}>{!reply ? 'Reply' : 'Exit'}</Button>
         </div>
       </div>
-      {data && data.length > 0 && (
+      {data.length > 0 || reply && (
         <div className={styles.repliesContainer}>
           {reply && (
             <AddReply commentId={id} reply={reply} setReply={setReply} />
