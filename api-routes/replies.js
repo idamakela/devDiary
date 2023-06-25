@@ -1,6 +1,6 @@
 import supabase from '@/lib/supabaseClient';
 
-export const commentsCacheKey = '/api/replies';
+export const repliesCacheKey = '/api/replies';
 
 //GET all replies for a comment
 export const getReplies = async (comment_id) => {

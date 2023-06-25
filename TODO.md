@@ -6,6 +6,7 @@
 
 - search blog posts
 - nested comments
+  - error handling for useSWR
 - look over rls
 
 ### Extra stuff
