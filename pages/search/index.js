@@ -17,7 +17,7 @@ export default function Search() {
   const [title, setTitle] = useState('');
 
   const { data: { data = [] } = {} } = useSWR(
-    fetchData ? postCacheKey : null,
+    fetchData ? `${postCacheKey}${title}` : null,
     () => searchPosts(title),
     [title]
   );
