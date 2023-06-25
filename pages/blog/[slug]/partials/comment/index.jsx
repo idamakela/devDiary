@@ -29,7 +29,7 @@ export default function Comment({
 
   const handleReply = () => {
     addReply = true;
-  }
+  };
 
   return (
     <div className={styles.container}>
