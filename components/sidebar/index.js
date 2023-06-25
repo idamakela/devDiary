@@ -25,6 +25,9 @@ export default function Navbar() {
     '/blog': {
       name: 'blog',
     },
+    '/search': {
+      name: 'search',
+    },
     '/create-post': {
       name: 'createPost',
       requiresAuth: true,
