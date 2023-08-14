@@ -20,9 +20,9 @@ export default function About() {
         adventures!
       </p>
       <p>Goodbye from devDiary!</p>
-      <p>Explore, engage, and keep coding!</p>
+      <p>Explore, engage, and keep coding! 🚀</p>
       <p>
-        - <a href='https://idamakela.vercel.app/'>@Ida Mäkelä</a>
+        - <a href='https://idamakela.vercel.app/'>@Ida Mäkelä 🙆‍♀️</a>
       </p>
     </>
   );
