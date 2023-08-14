@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <Heading>Home</Heading>
-      <p>Welcome to devDiary!</p>
+      <p>Welcome to devDiary! ✨</p>
       <p>
         Are you a curious developer with thoughts to share? Join our vibrant
         community on devDiary and embark on an exploration of the captivating
