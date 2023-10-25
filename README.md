@@ -1,3 +1,9 @@
+# devDiary
+
+![devDiary landing page](./public/devDiary-screenshot.png)
+
+---
+
 # Blog Assignment
 
 Welcome to the final assignment! This repository serves as a starter kit for developing your own blog page, which could become part of your portfolio website.
@@ -138,3 +144,4 @@ Feel free to choose one or more from the list above, or come up with your own id
 ---
 
 Dive into coding, and let's create an impressive blog/portfolio page together! Good luck! <3
+
